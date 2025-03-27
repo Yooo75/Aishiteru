@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Slideshow</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: linear-gradient(145deg, #4B0082, #800080);
+            color: white;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            overflow: hidden;
+        }
+        .slideshow-container {
+            width: 80%;
+            max-width: 900px;
+            background: rgba(255, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .slide {
+            display: none;
+            text-align: center;
+            padding: 30px;
+        }
+        .slide.active {
+            display: block;
+        }
+        .slide h1 {
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            color: #FF0000;
+            text-shadow: 2px 2px 4px black;
+        }
+        .slide p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #FF6347;
+            text-shadow: 1px 1px 2px black;
+        }
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        button {
+            padding: 10px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            border-radius: 12px;
+            background-color: #FF0000;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: background 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #FF4C4C;
+            transform: scale(1.1);
+        }
+        /* Love Button */
+        #love-button {
+            margin-top: 20px;
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            background-color: #FF007F;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: background 0.3s, transform 0.2s;
+        }
+        #love-button:hover {
+            background-color: #FF4CA0;
+            transform: scale(1.1);
+        }
+        /* Final Message */
+        #final-message {
+            display: none;
+            font-size: 2rem;
+            color: #FF0000;
+            text-shadow: 2px 2px 4px black;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slideshow-container">
+    <div class="slide active">
+        <h1>Slide 1</h1>
+        <p>Ahm, hello my lady — your stupid nerd 🤓 speaking 🗣️</p>
+    </div>
+    <div class="slide">
+        <h1>Slide 2</h1>
+        <p>First of all, I AM SO SORRY (x20).  
+        But no matter how many times I say it, it's not enough. I know I need to show it through actions. Yes, yes... I know.</p>
+    </div>
+    <div class="slide">
+        <h1>Slide 3</h1>
+        <p>I'm also sorry for not being there when you were about to open up.  
+        But please, please give me another chance? I won’t forget it this time.</p>
+    </div>
+    <div class="slide">
+        <h1>Slide 4</h1>
+        <p>I know it's not easy, but just know — I’m waiting.  
+        I won’t go anywhere next time.</p>
+    </div>
+    <div class="slide">
+        <h1>Slide 5</h1>
+        <p>I’m not exactly a good person.  
+        I’m nothing important or special.  
+        I barely understand half of the things happening in my own life... there's just too much crap.</p>
+    </div>
+    <div class="slide">
+        <h1>Slide 6</h1>
+        <p>I don’t know how you really feel about me.  
+        But if it's not that great — I get it.  
+        And if it is still the same... I’m so grateful to you 💗</p>
+    </div>
+    <div class="slide">
+        <h1>Slide 7</h1>
+        <p>I love you so much.  
+        I know this small gesture won’t fix everything... but I hope it means something.</p>
+    </div>
+    <div class="slide">
+        <h1>Slide 8</h1>
+        <p>You are perfect — the best anyone could ask for.  
+        I’m so happy to have you, and you deserve so much more.  
+        You don't deserve the mistakes I keep making... but I’ll keep trying. 🫶</p>
+    </div>
+
+    <div class="buttons">
+        <button onclick="changeSlide(-1)">Previous</button>
+        <button onclick="changeSlide(1)">Next</button>
+    </div>
+
+    <!-- Love Button -->
+    <button id="love-button" onclick="handleLoveClick()">Do you love me?</button>
+    <p id="final-message">CONGRATULATIONS! I LOVE YOU EVEN MORE 💜❤️🎉🎉</p>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    let loveClickCount = 0;
+
+    function changeSlide(direction) {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + direction + slides.length) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+
+    function handleLoveClick() {
+        loveClickCount++;
+        if (loveClickCount >= 10) {
+            document.getElementById('final-message').style.display = 'block';
+            document.getElementById('love-button').style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
